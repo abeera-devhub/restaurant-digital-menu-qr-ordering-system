@@ -1,0 +1,25 @@
+<%# views/partials/admin/dashboard-card.ejs %>
+<%# Reusable stat card. %>
+<%# Requires: card = { label, value, icon, colorClass, trend (optional) } %>
+
+<div class="dash-card <%= card.colorClass || '' %>" role="region" aria-label="<%= card.label %> statistics">
+  <div class="dash-card-header">
+    <div class="dash-card-icon-wrap" aria-hidden="true">
+      <%- card.icon %>
+    </div>
+    <% if (typeof card.trend !== 'undefined' && card.trend !== null) { %>
+      <span class="dash-card-trend <%= card.trend >= 0 ? 'trend-up' : 'trend-down' %>" aria-label="Trend: <%= card.trend %>%">
+        <% if (card.trend >= 0) { %>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+        <% } else { %>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        <% } %>
+        <%= Math.abs(card.trend) %>%
+      </span>
+    <% } %>
+  </div>
+  <div class="dash-card-body">
+    <p class="dash-card-value"><%= card.value %></p>
+    <p class="dash-card-label"><%= card.label %></p>
+  </div>
+</div>

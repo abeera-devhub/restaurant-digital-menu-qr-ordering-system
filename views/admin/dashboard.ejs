@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% var extraCSS = '/css/admin/dashboard.css'; %>
+  <%- include('../partials/header') %>
+</head>
+<body class="admin-body">
+
+  <div class="admin-layout">
+
+    <%- include('../partials/adminSidebar') %>
+
+    <div class="admin-main-wrapper">
+
+      <%- include('../partials/adminTopbar') %>
+
+      <main class="admin-main" id="mainContent">
+
+        <div class="page-header">
+          <div class="page-header-left">
+            <%- include('../partials/adminBreadcrumb', {
+              breadcrumbs: [{ label: 'Dashboard', url: '/admin/dashboard' }]
+            }) %>
+            <div class="page-welcome">
+              <h2 class="page-title">Dashboard Console</h2>
+              <p class="page-subtitle">
+                Welcome back, <strong><%= adminUser.name %></strong>.
+                Here's what's happening today.
+              </p>
+            </div>
+          </div>
+          <div class="page-header-right">
+            <span class="page-date" id="currentDate" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <%# Summary Cards %>
+        <section class="dash-cards-grid" aria-label="Summary statistics">
+
+          <%- include('../partials/adminDashboardCard', { card: {
+            label:      'Total Categories',
+            value:      stats.totalCategories,
+            colorClass: 'card-blue',
+            trend:      null,
+            icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>'
+          }}) %>
+
+          <%- include('../partials/adminDashboardCard', { card: {
+            label:      'Total Menu Items',
+            value:      stats.totalMenuItems,
+            colorClass: 'card-orange',
+            trend:      null,
+            icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2h18v6H3z"/><path d="M3 10h18v6H3z"/><path d="M3 18h18v4H3z"/></svg>'
+          }}) %>
+
+          <%- include('../partials/adminDashboardCard', { card: {
+            label:      "Today's Orders",
+            value:      stats.todayOrders,
+            colorClass: 'card-green',
+            trend:      null,
+            icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>'
+          }}) %>
+
+          <%- include('../partials/adminDashboardCard', { card: {
+            label:      'Pending Bill Requests',
+            value:      stats.pendingBills,
+            colorClass: 'card-red',
+            trend:      null,
+            icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>'
+          }}) %>
+
+        </section>
+
+        <div class="dash-bottom-row">
+
+          <section class="dash-panel" aria-labelledby="quickActionsTitle">
+            <div class="dash-panel-header">
+              <h3 class="dash-panel-title" id="quickActionsTitle">Quick Actions</h3>
+            </div>
+            <div class="dash-panel-body">
+              <div class="quick-actions-grid">
+
+                <a href="/admin/categories" class="quick-action-btn" aria-label="Add Category">
+                  <span class="quick-action-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </span>
+                  <span class="quick-action-label">Add Category</span>
+                </a>
+
+                <a href="/admin/menu-items" class="quick-action-btn" aria-label="Add Menu Item">
+                  <span class="quick-action-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                  </span>
+                  <span class="quick-action-label">Add Menu Item</span>
+                </a>
+
+                <a href="/admin/orders" class="quick-action-btn" aria-label="View Orders">
+                  <span class="quick-action-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                      <rect x="9" y="3" width="6" height="4" rx="2"/>
+                    </svg>
+                  </span>
+                  <span class="quick-action-label">View Orders</span>
+                </a>
+
+                <a href="/admin/staff" class="quick-action-btn" aria-label="Manage Staff">
+                  <span class="quick-action-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  </span>
+                  <span class="quick-action-label">Manage Staff</span>
+                </a>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="dash-panel" aria-labelledby="recentActivityTitle">
+            <div class="dash-panel-header">
+              <h3 class="dash-panel-title" id="recentActivityTitle">Recent Activity</h3>
+            </div>
+            <div class="dash-panel-body">
+              <div class="empty-state" role="status">
+                <div class="empty-state-icon" aria-hidden="true">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <p class="empty-state-text">No recent activity.</p>
+                <p class="empty-state-sub">Activity will appear here once orders start coming in.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <% var extraJS = '/js/admin/dashboard.js'; %>
+  <%- include('../partials/footer') %>
+</body>
+</html>

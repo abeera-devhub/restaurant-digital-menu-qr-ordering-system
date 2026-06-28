@@ -1,0 +1,24 @@
+<%# views/partials/admin/breadcrumb.ejs %>
+<%# Reusable breadcrumb. Requires: breadcrumbs array [{ label, url }] %>
+<%# Last item is always the current page (no link). %>
+
+<% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length > 0) { %>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list" role="list">
+      <% breadcrumbs.forEach(function(crumb, index) { %>
+        <li class="breadcrumb-item">
+          <% if (index < breadcrumbs.length - 1) { %>
+            <a href="<%= crumb.url %>" class="breadcrumb-link"><%= crumb.label %></a>
+            <span class="breadcrumb-separator" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </span>
+          <% } else { %>
+            <span class="breadcrumb-current" aria-current="page"><%= crumb.label %></span>
+          <% } %>
+        </li>
+      <% }); %>
+    </ol>
+  </nav>
+<% } %>
