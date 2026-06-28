@@ -1,0 +1,206 @@
+/* public/css/global.css */
+/* Global base styles, CSS custom properties, and resets.
+   Shared across all role interfaces (admin, staff, customer). */
+
+/* ─── CSS Custom Properties ──────────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --color-primary:       #8B2500;   /* Deep brown-red — buttons, active states */
+  --color-primary-light: #C0392B;   /* Lighter red — hover states */
+  --color-primary-dark:  #5C1A00;   /* Darker — pressed states */
+  --color-accent:        #E07B39;   /* Orange — prices, highlights */
+
+  /* Neutrals */
+  --color-bg:            #F5F5F5;   /* App background */
+  --color-surface:       #FFFFFF;   /* Card/panel background */
+  --color-border:        #E0E0E0;   /* Borders, dividers */
+  --color-text-primary:  #1A1A1A;   /* Main body text */
+  --color-text-secondary:#6B6B6B;   /* Subtitles, captions */
+  --color-text-muted:    #9E9E9E;   /* Placeholder text */
+
+  /* Status Colors */
+  --color-success:       #27AE60;
+  --color-warning:       #F39C12;
+  --color-danger:        #E74C3C;
+  --color-info:          #2980B9;
+
+  /* Status Badge Colors */
+  --status-pending:      #F39C12;
+  --status-preparing:    #E07B39;
+  --status-ready:        #27AE60;
+  --status-served:       #7F8C8D;
+
+  /* Typography */
+  --font-family:         'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs:        0.75rem;
+  --font-size-sm:        0.875rem;
+  --font-size-base:      1rem;
+  --font-size-md:        1.125rem;
+  --font-size-lg:        1.25rem;
+  --font-size-xl:        1.5rem;
+  --font-size-2xl:       2rem;
+  --font-weight-normal:  400;
+  --font-weight-medium:  500;
+  --font-weight-semibold:600;
+  --font-weight-bold:    700;
+
+  /* Spacing */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+  /* Border Radius */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-full:9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.10);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.12);
+
+  /* Transitions */
+  --transition-fast:  0.15s ease;
+  --transition-base:  0.25s ease;
+  --transition-slow:  0.4s ease;
+
+  /* Layout */
+  --sidebar-width:     240px;
+  --topbar-height:     64px;
+  --customer-nav-height: 60px;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────────────── */
+.text-primary   { color: var(--color-primary); }
+.text-accent    { color: var(--color-accent); }
+.text-muted     { color: var(--color-text-muted); }
+.text-sm        { font-size: var(--font-size-sm); }
+.text-lg        { font-size: var(--font-size-lg); }
+.font-bold      { font-weight: var(--font-weight-bold); }
+.font-semibold  { font-weight: var(--font-weight-semibold); }
+
+.d-flex         { display: flex; }
+.align-center   { align-items: center; }
+.justify-between{ justify-content: space-between; }
+.flex-col       { flex-direction: column; }
+.gap-sm         { gap: var(--space-sm); }
+.gap-md         { gap: var(--space-md); }
+
+.mt-sm  { margin-top: var(--space-sm); }
+.mt-md  { margin-top: var(--space-md); }
+.mt-lg  { margin-top: var(--space-lg); }
+.mb-md  { margin-bottom: var(--space-md); }
+.p-md   { padding: var(--space-md); }
+.p-lg   { padding: var(--space-lg); }
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-light);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.btn-full { width: 100%; }
+
+/* ─── Status Badges ──────────────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-pending   { background: #FEF3CD; color: #856404; }
+.badge-preparing { background: #FFE5D0; color: #8B2500; }
+.badge-ready     { background: #D4EDDA; color: #155724; }
+.badge-served    { background: #E9ECEF; color: #495057; }
+.badge-available { background: #D4EDDA; color: #155724; }
+.badge-outofstock{ background: #F8D7DA; color: #721C24; }

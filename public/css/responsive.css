@@ -1,0 +1,15 @@
+/* public/css/responsive.css */
+/* Responsive breakpoints and mobile-first overrides.
+   Completed in Phase 14 (final polish pass). */
+
+/* Mobile first — base styles are already mobile in customer.css */
+
+/* Tablet */
+@media (min-width: 768px) {
+  /* TODO: Phase 14 */
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  /* TODO: Phase 14 */
+}

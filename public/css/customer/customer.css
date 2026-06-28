@@ -1,0 +1,41 @@
+/* public/css/customer/customer.css */
+/* Customer-facing styles — mobile-first, card layouts, bottom nav.
+   Implemented from Phase 8 onwards. */
+
+.customer-layout {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--color-surface);
+  padding-bottom: var(--customer-nav-height);
+}
+
+.customer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.customer-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-sm) 0;
+  height: var(--customer-nav-height);
+  z-index: 100;
+}
+
+/* Placeholder — full styles added per phase */

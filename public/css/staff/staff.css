@@ -1,0 +1,28 @@
+/* public/css/staff/staff.css */
+/* Staff panel specific styles — sidebar, order cards, status badges.
+   Implemented in Phase 13. */
+
+.staff-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.staff-sidebar {
+  width: var(--sidebar-width);
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: var(--space-lg) 0;
+}
+
+.staff-main {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: var(--space-xl);
+  background: var(--color-bg);
+}
+
+/* Placeholder — full styles added in Phase 13 */
