@@ -1,5 +1,10 @@
-<!-- views/partials/footer.ejs -->
-<!-- Shared footer partial -->
-<footer style="text-align:center; padding:20px; font-size:0.85rem; color:#888;">
-  &copy; <%= new Date().getFullYear() %> Bistro Modern. All rights reserved.
+<%# views/partials/footer.ejs %>
+<%# extraJS variable must be set before including this. %>
+
+<footer class="app-footer">
+  <p>&copy; <%= new Date().getFullYear() %> Bistro Modern. All rights reserved.</p>
 </footer>
+
+<% if (typeof extraJS !== 'undefined' && extraJS) { %>
+  <script src="<%= extraJS %>"></script>
+<% } %>

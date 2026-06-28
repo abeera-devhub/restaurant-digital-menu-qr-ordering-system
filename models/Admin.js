@@ -1,5 +1,3 @@
-
-
 // models/Admin.js
 // Mongoose model for restaurant administrator accounts.
 // Used for admin authentication and protected route access.
@@ -69,6 +67,6 @@ const AdminSchema = new mongoose.Schema(
 );
 
 // ─── Indexes ──────────────────────────────────────────────────────────────────
-AdminSchema.index({ email: 1 }, { unique: true });
+//AdminSchema.index({ email: 1 }, { unique: true });
 
 module.exports = mongoose.model("Admin", AdminSchema);

@@ -1,14 +1,17 @@
 // middleware/adminMiddleware.js
 // Admin route protection middleware.
-// Ensures only authenticated admins can access admin routes.
-// Applied to all routes under /admin prefix.
+// Verifies an active admin session exists before allowing access.
+// Redirects to admin login if session is missing or invalid.
+
+"use strict";
 
 const adminMiddleware = (req, res, next) => {
-  if (req.session && req.session.adminUser) {
+  // Check for valid admin session
+  if (req.session && req.session.adminUser && req.session.adminUser.role === "admin") {
     return next();
   }
 
-  // Preserve intended destination for post-login redirect
+  // Save intended destination for redirect after login
   req.session.returnTo = req.originalUrl;
 
   return res.redirect("/auth/admin/login");

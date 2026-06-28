@@ -1,23 +1,20 @@
 // middleware/authMiddleware.js
 // General authentication middleware.
-// Verifies that a user session exists before allowing route access.
-// Specific role guards (adminMiddleware, staffMiddleware) handle role checks.
+// Verifies that a user session (admin or staff) exists.
+// Role-specific guards are in adminMiddleware and staffMiddleware.
+
+"use strict";
 
 const authMiddleware = (req, res, next) => {
-  const isAdminLoggedIn = req.session && req.session.adminUser;
-  const isStaffLoggedIn = req.session && req.session.staffUser;
+  const isAdmin = req.session && req.session.adminUser;
+  const isStaff = req.session && req.session.staffUser;
 
-  if (isAdminLoggedIn || isStaffLoggedIn) {
+  if (isAdmin || isStaff) {
     return next();
   }
 
-  // Store the originally requested URL for redirect after login
+  // Preserve the originally requested URL for post-login redirect
   req.session.returnTo = req.originalUrl;
-
-  // Redirect to appropriate login based on route prefix
-  if (req.originalUrl.startsWith("/admin")) {
-    return res.redirect("/auth/admin/login");
-  }
 
   if (req.originalUrl.startsWith("/staff")) {
     return res.redirect("/auth/staff/login");

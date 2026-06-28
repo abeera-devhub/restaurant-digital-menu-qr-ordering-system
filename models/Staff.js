@@ -78,7 +78,7 @@ const StaffSchema = new mongoose.Schema(
 );
 
 // ─── Indexes ──────────────────────────────────────────────────────────────────
-StaffSchema.index({ email: 1 }, { unique: true });
+//StaffSchema.index({ email: 1 }, { unique: true });
 StaffSchema.index({ role: 1 });
 
 module.exports = mongoose.model("Staff", StaffSchema);
